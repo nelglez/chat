@@ -31,7 +31,20 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Name"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
     
+    let nameSeparatorView: UIView = {
+       let separatorView = UIView()
+        separatorView.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        return separatorView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +68,26 @@ class LogInViewController: UIViewController {
         inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true //-24 means 12 pixels on the left and 12 pixels on the right
         
         inputContainerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+        inputContainerView.addSubview(nameTextField)
+        inputContainerView.addSubview(nameSeparatorView)
+        //need x, y, width, and height
+        //specify where the nametextfield needs to be
+        nameTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12).isActive = true
+        //top of the view
+        nameTextField.topAnchor.constraint(equalTo: inputContainerView.topAnchor).isActive = true
+        //width
+        nameTextField.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        //height
+        nameTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: 1/3).isActive = true // 1/3 of the entire height
+        
+        
+        //need x, y, width, and height
+        
+        nameSeparatorView.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor).isActive = true
+        nameSeparatorView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
+        nameSeparatorView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        nameSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
     func setupLoginRegisterButton(){
