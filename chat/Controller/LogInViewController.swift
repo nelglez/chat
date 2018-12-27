@@ -70,6 +70,16 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
+    let profileImageView: UIImageView = {
+       
+        let profileImage = UIImageView()
+        profileImage.image = UIImage(named: "profile")
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        profileImage.contentMode = .scaleAspectFill
+        
+        return profileImage
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +89,10 @@ class LogInViewController: UIViewController {
       
         view.addSubview(inputContainerView)
         view.addSubview(loginRegisterButton)
+        view.addSubview(profileImageView)
         setupInputContainerView()
         setupLoginRegisterButton()
+        setupProfileImageView()
         
     }
     
@@ -158,6 +170,18 @@ class LogInViewController: UIViewController {
         loginRegisterButton.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
+    
+    func setupProfileImageView() {
+        //need x, y, width, and height
+        
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -12).isActive = true //-12 to be above the view
+        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+
+    }
+    
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
