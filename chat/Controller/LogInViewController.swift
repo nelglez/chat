@@ -10,20 +10,26 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let inputContainerView = UIView()
-    inputContainerView.backgroundColor = .white
-    //need below for it to actually show up on the screen
-    inputContainerView.translatesAutoresizingMaskIntoConstraints = false
+    let inputContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        //need below for it to actually show up on the screen
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
       //  view.backgroundColor = UIColor(red: 61/255, green: 91/255, blue: 151/255, alpha: 1)
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
-        
-       
+      
         view.addSubview(inputContainerView)
+        setupInputContainerView()
         
+    }
+    
+    func setupInputContainerView() {
         //now add contraints: need x, y, width, and height
         //x value to be centered on the entire view
         inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -33,7 +39,6 @@ class LogInViewController: UIViewController {
         
         inputContainerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
