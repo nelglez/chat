@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 class LogInViewController: UIViewController {
     
@@ -20,14 +22,17 @@ class LogInViewController: UIViewController {
         view.mask?.clipsToBounds = true
         return view
     }()
-    
-    let loginRegisterButton: UIButton = {
+    //lazy var gives us access to self
+    lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
     
@@ -79,6 +84,34 @@ class LogInViewController: UIViewController {
         
         return profileImage
     }()
+    
+    @objc func handleRegister(){
+        print("TOUCHED!!!")
+        
+        guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty, let name = nameTextField.text, !name.isEmpty else {return}
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            //success!
+            //Now Save The User
+            
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            
+            let ref = Database.database().reference()
+            let values = ["Name": name, "Email": email]
+            let usersRef = ref.child("users").child(uid)
+            usersRef.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                if err != nil {
+                    print(err!.localizedDescription)
+                    return
+                }
+                print("Saved User Succesfully")
+            })
+        }
+    }
     
 
     override func viewDidLoad() {
