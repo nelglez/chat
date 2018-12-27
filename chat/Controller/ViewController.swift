@@ -13,15 +13,23 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let ref = Database.database().reference(fromURL: "https://chat-app-e1db0.firebaseio.com/")
-//        ref.updateChildValues(["someValue": 123234])
+        //user is not logged in...
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogOut), with: nil, afterDelay: 0)
+         
+        }
         
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(handleLogOut))
     }
     
     @objc func handleLogOut(){
+        do {
+        try Auth.auth().signOut()
+        } catch let error {
+            print(error.localizedDescription)
+            
+        }
        let loginVC = LogInViewController()
         present(loginVC, animated: true, completion: nil)
     }

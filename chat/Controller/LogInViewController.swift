@@ -118,8 +118,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc func handleRegister(){
-        print("TOUCHED!!!")
-        
+       
         guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty, let name = nameTextField.text, !name.isEmpty else {return}
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -140,7 +139,7 @@ class LogInViewController: UIViewController {
                     print(err!.localizedDescription)
                     return
                 }
-                print("Saved User Succesfully")
+                self.dismiss(animated: true, completion: nil)
             })
         }
     }
