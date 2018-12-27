@@ -45,6 +45,31 @@ class LogInViewController: UIViewController {
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         return separatorView
     }()
+    
+    let emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Email"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
+    let emailSeparatorView: UIView = {
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        return separatorView
+    }()
+    
+    let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Password"
+        textField.isSecureTextEntry = true
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textField
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +96,9 @@ class LogInViewController: UIViewController {
         
         inputContainerView.addSubview(nameTextField)
         inputContainerView.addSubview(nameSeparatorView)
+        inputContainerView.addSubview(emailTextField)
+        inputContainerView.addSubview(emailSeparatorView)
+        inputContainerView.addSubview(passwordTextField)
         //need x, y, width, and height
         //specify where the nametextfield needs to be
         nameTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12).isActive = true
@@ -88,6 +116,36 @@ class LogInViewController: UIViewController {
         nameSeparatorView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
         nameSeparatorView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
         nameSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        
+        //need x, y, width, and height
+        //specify where the nametextfield needs to be
+        emailTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12).isActive = true
+        //top of the view
+        emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
+        //width
+        emailTextField.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        //height
+        emailTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: 1/3).isActive = true // 1/3 of the entire height
+        
+        
+        //need x, y, width, and height
+        
+        emailSeparatorView.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor).isActive = true
+        emailSeparatorView.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
+        emailSeparatorView.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        emailSeparatorView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        
+        //need x, y, width, and height
+        //specify where the nametextfield needs to be
+        passwordTextField.leftAnchor.constraint(equalTo: inputContainerView.leftAnchor, constant: 12).isActive = true
+        //top of the view
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor).isActive = true
+        //width
+        passwordTextField.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true
+        //height
+        passwordTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: 1/3).isActive = true // 1/3 of the entire height
     }
     
     func setupLoginRegisterButton(){
