@@ -75,15 +75,18 @@ class LogInViewController: UIViewController {
         return textField
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
        
         let profileImage = UIImageView()
         profileImage.image = UIImage(named: "profile")
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         profileImage.contentMode = .scaleAspectFill
-        
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         return profileImage
     }()
+    
+   
     
     lazy var loginRegisterSegmentedControl: UISegmentedControl = {
         let segementedControl = UISegmentedControl(items: ["Login", "Register"])

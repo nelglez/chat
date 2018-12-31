@@ -16,6 +16,7 @@
 		7A4890FF21D54669005CDFF2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A4890FE21D54669005CDFF2 /* GoogleService-Info.plist */; };
 		7A48910121DAA053005CDFF2 /* NewMessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48910021DAA053005CDFF2 /* NewMessageTableViewController.swift */; };
 		7A48910421DAA612005CDFF2 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48910321DAA612005CDFF2 /* Users.swift */; };
+		7A48910621DAB294005CDFF2 /* LoginController+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A48910521DAB294005CDFF2 /* LoginController+Handlers.swift */; };
 		9588D77D034C73CC5241CD5F /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAB89E6F7F5E99DF8D61D8C /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		7A4890FE21D54669005CDFF2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A48910021DAA053005CDFF2 /* NewMessageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageTableViewController.swift; sourceTree = "<group>"; };
 		7A48910321DAA612005CDFF2 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		7A48910521DAB294005CDFF2 /* LoginController+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginController+Handlers.swift"; sourceTree = "<group>"; };
 		B580298EF7F291D4C26D9796 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		F27D71B4422006F4A9804603 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				7A4890F821D5209B005CDFF2 /* LogInViewController.swift */,
+				7A48910521DAB294005CDFF2 /* LoginController+Handlers.swift */,
 				7A4890E721D51A40005CDFF2 /* MessagesViewController.swift */,
 				7A48910021DAA053005CDFF2 /* NewMessageTableViewController.swift */,
 			);
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A48910621DAB294005CDFF2 /* LoginController+Handlers.swift in Sources */,
 				7A48910121DAA053005CDFF2 /* NewMessageTableViewController.swift in Sources */,
 				7A4890E821D51A40005CDFF2 /* MessagesViewController.swift in Sources */,
 				7A48910421DAA612005CDFF2 /* Users.swift in Sources */,
