@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension LogInViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -43,6 +44,61 @@ extension LogInViewController: UIImagePickerControllerDelegate, UINavigationCont
         dismiss(animated: true, completion: nil)
     }
     
+    @objc func handleRegister(){
+        
+        guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty, let name = nameTextField.text, !name.isEmpty else {return}
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            //success!
+             guard let uid = Auth.auth().currentUser?.uid else {return}
+            let imageName = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
+            if let uploadData = self.profileImageView.image, let imageData = uploadData.jpegData(compressionQuality: 0.1){
+                storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                  //  print(metadata)
+                    
+                    let profileImageUrl = storageRef.downloadURL{ url, error in
+                        if let error = error {
+                            print(error)
+                            return
+                        } else {
+                            
+                                let profileImageUrl = url?.absoluteString
+                             let values = ["Name": name, "Email": email, "profileImageUrl": profileImageUrl]
+                            self.registerUserIntoDatabaseWithUID(uid: uid, values: values as [String : Any])
+                            
+                            }
+                    }
+                })
+            }
+           
+            
+            
+            
+            
+        }
+    }
+    
+    func registerUserIntoDatabaseWithUID(uid: String, values: [String : Any]){
+        let ref = Database.database().reference()
+       
+        let usersRef = ref.child("users").child(uid)
+        usersRef.updateChildValues(values, withCompletionBlock: { (err, ref) in
+            if err != nil {
+                print(err!.localizedDescription)
+                return
+            }
+            self.dismiss(animated: true, completion: nil)
+        })
+    }
     
 }
 

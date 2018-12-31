@@ -141,32 +141,7 @@ class LogInViewController: UIViewController {
         }
     }
     
-    @objc func handleRegister(){
-       
-        guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty, let name = nameTextField.text, !name.isEmpty else {return}
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            //success!
-            //Now Save The User
-            
-            guard let uid = Auth.auth().currentUser?.uid else {return}
-            
-            let ref = Database.database().reference()
-            let values = ["Name": name, "Email": email]
-            let usersRef = ref.child("users").child(uid)
-            usersRef.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err!.localizedDescription)
-                    return
-                }
-                self.dismiss(animated: true, completion: nil)
-            })
-        }
-    }
+   
     
 
     override func viewDidLoad() {
