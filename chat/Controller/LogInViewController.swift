@@ -130,6 +130,8 @@ class LogInViewController: UIViewController {
     
     func handleLogin(){
         
+        print("Pressed")
+        
          guard let email = emailTextField.text, !email.isEmpty, let password = passwordTextField.text, !password.isEmpty else {return}
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
