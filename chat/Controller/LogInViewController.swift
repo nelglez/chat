@@ -12,6 +12,8 @@ import Firebase
 
 class LogInViewController: UIViewController {
     
+    var messagesController: MessagesViewController?
+    
     let inputContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -139,6 +141,7 @@ class LogInViewController: UIViewController {
                 print(error!.localizedDescription)
                 return
             }
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
            self.dismiss(animated: true, completion: nil)
         }
     }

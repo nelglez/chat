@@ -25,10 +25,11 @@ class NewMessageTableViewController: UITableViewController {
     func fetchUser(){
         Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String: AnyObject] {
-            let name = dict["Name"] as? String
-            let email = dict["Email"] as? String
-                let profileImageUrl = dict["profileImageUrl"] as? String
-           let user = Users()
+            let name = dict["name"] as? String
+            let email = dict["email"] as? String
+            let profileImageUrl = dict["profileImageUrl"] as? String
+                let user = Users()
+                
                 user.name = name
                 user.email = email
                 user.profileImageUrl = profileImageUrl

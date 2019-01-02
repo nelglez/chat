@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 extension LogInViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+
 
 @objc func handleSelectProfileImageView(){
     let picker = UIImagePickerController()
@@ -56,8 +58,8 @@ extension LogInViewController: UIImagePickerControllerDelegate, UINavigationCont
             //success!
              guard let uid = Auth.auth().currentUser?.uid else {return}
             let imageName = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).png")
-            if let uploadData = self.profileImageView.image, let imageData = uploadData.jpegData(compressionQuality: 0.1){
+            let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
+            if let uploadData = self.profileImageView.image, let imageData = uploadData.jpegData(compressionQuality: 0.1) {
                 storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
                         print(error!.localizedDescription)
@@ -72,7 +74,7 @@ extension LogInViewController: UIImagePickerControllerDelegate, UINavigationCont
                         } else {
                             
                                 let profileImageUrl = url?.absoluteString
-                             let values = ["Name": name, "Email": email, "profileImageUrl": profileImageUrl]
+                             let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl]
                             self.registerUserIntoDatabaseWithUID(uid: uid, values: values as [String : Any])
                             
                             }
@@ -96,6 +98,11 @@ extension LogInViewController: UIImagePickerControllerDelegate, UINavigationCont
                 print(err!.localizedDescription)
                 return
             }
+            let userName = values["name"] as? String
+            let user = Users()
+            user.name = userName
+           // self.messagesController?.navigationItem.title = values["name"] as? String
+            self.messagesController?.setupNavBarWithUser(user: user)
             self.dismiss(animated: true, completion: nil)
         })
     }
